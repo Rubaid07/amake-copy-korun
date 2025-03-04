@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clipboard Prank</title>
+</head>
+<style>
+    p{
+        font-size: 24px;
+    }
+</style>
+<body>
+    <p id="prank" style="cursor: pointer;">Amake copy kor🙂</p>
+
+    <script>
+        document.getElementById('prank').addEventListener('click', function() {
+            navigator.clipboard.writeText('kire thik moto copy korte paros na...😑')
+        });
+    </script>
+</body>
+</html>
