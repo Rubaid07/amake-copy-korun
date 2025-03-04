@@ -6,17 +6,40 @@
     <title>Clipboard Prank</title>
 </head>
 <style>
-    p{
+    p {
         font-size: 24px;
+        cursor: pointer;
+        user-select: text; /* Ensure the text is selectable */
     }
 </style>
 <body>
-    <p id="prank" style="cursor: pointer;">Amake copy kor🙂</p>
+    <p id="prank">Amake copy korun🙂</p>
 
     <script>
-        document.getElementById('prank').addEventListener('click', function() {
-            navigator.clipboard.writeText('kire thik moto copy korte paros na...😑')
+        document.getElementById('prank').addEventListener('mouseup', function() {
+            let sentences = [
+                'rubaid vai onekkkk valo🤗', 
+                'tohar taratari biye hok🤲',
+                'tareq er taratari biye hok🤲',
+                'rubu toke ami party dibo...🥲', 
+                'rubu amar boro vai😌', 
+                'appan ami toke 500 tk dibo',
+                'ami ar vondami korbo na🥲'
+            ];
+
+           
+            if (window.getSelection().toString().length > 0) {
+                let randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
+                
+                navigator.clipboard.writeText(randomSentence)
+            }
         });
     </script>
 </body>
 </html>
+
+
+
+<!-- 
+
+-->
