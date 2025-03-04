@@ -9,35 +9,55 @@
     p {
         font-size: 24px;
         cursor: pointer;
-        user-select: text; /* Ensure the text is selectable */
+        user-select: text; /* Ensure text is selectable */
     }
 </style>
 <body>
     <p id="prank">Amake copy korun🙂</p>
 
     <script>
-        document.getElementById('prank').addEventListener('mouseup', function() {
-            let sentences = [
-                'rubaid vai onekkkk valo🤗', 
+        let sentences = [
+           'rubaid vai onekkkk valo🤗', 
                 'tohar taratari biye hok🤲',
                 'tareq er taratari biye hok🤲',
                 'rubu toke ami party dibo...🥲', 
                 'rubu amar boro vai😌', 
                 'appan ami toke 500 tk dibo',
                 'ami ar vondami korbo na🥲'
-            ];
+        ];
 
-           
-            if (window.getSelection().toString().length > 0) {
-                let randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
-                
-                navigator.clipboard.writeText(randomSentence)
-            }
+        function copyRandomText() {
+            let randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
+
+            let textArea = document.createElement("textarea");
+            textArea.value = randomSentence;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            document.body.removeChild(textArea);
+
+            
+        }
+
+        // Single Click Event
+        document.getElementById('prank').addEventListener('click', function() {
+            copyRandomText();
         });
+
+        // Text Selection Event
+        document.getElementById('prank').addEventListener('mouseup', function() {
+            setTimeout(() => {
+                let selectedText = window.getSelection().toString().trim();
+                if (selectedText.length > 0) {
+                    copyRandomText();
+                    window.getSelection().removeAllRanges();
+                }
+            }, 100);
+        });
+
     </script>
 </body>
 </html>
-
 
 
 <!-- 
