@@ -9,7 +9,7 @@
     p {
         font-size: 24px;
         cursor: pointer;
-        user-select: text; /* Ensure text is selectable */
+        user-select: text; 
     }
 </style>
 <body>
@@ -17,49 +17,44 @@
 
     <script>
         let sentences = [
-           'rubaid vai onekkkk valo🤗', 
-                'tohar taratari biye hok🤲',
-                'tareq er taratari biye hok🤲',
-                'rubu toke ami party dibo...🥲', 
-                'rubu amar boro vai😌', 
-                'appan ami toke 500 tk dibo',
-                'ami ar vondami korbo na🥲'
+            'rubaid vai onekkkk valo🤗', 
+            'tohar taratari biye hok🤲',
+            'tareq er taratari biye hok🤲',
+            'rubu toke ami party dibo...🥲', 
+            'rubu amar boro vai😌', 
+            'appan ami toke 500 tk dibo',
+            'ami ar vondami korbo na🥲'
         ];
 
-        function copyRandomText() {
-            let randomSentence = sentences[Math.floor(Math.random() * sentences.length)];
+        let currentIndex = 0;
 
+        function copyNextText() {
             let textArea = document.createElement("textarea");
-            textArea.value = randomSentence;
+            textArea.value = sentences[currentIndex];
             document.body.appendChild(textArea);
             textArea.select();
             document.execCommand("copy");
             document.body.removeChild(textArea);
 
             
+            currentIndex = (currentIndex + 1) % sentences.length;
         }
 
-        // Single Click Event
+        
+        document.getElementById('prank').addEventListener('copy', function(event) {
+            event.preventDefault(); 
+            copyNextText(); 
+        });
+
+        
         document.getElementById('prank').addEventListener('click', function() {
-            copyRandomText();
+            copyNextText();
         });
 
-        // Text Selection Event
-        document.getElementById('prank').addEventListener('mouseup', function() {
-            setTimeout(() => {
-                let selectedText = window.getSelection().toString().trim();
-                if (selectedText.length > 0) {
-                    copyRandomText();
-                    window.getSelection().removeAllRanges();
-                }
-            }, 100);
+        
+        document.getElementById('prank').addEventListener('touchend', function() {
+            copyNextText();
         });
-
     </script>
 </body>
 </html>
-
-
-<!-- 
-
--->
